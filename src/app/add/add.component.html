@@ -1,0 +1,29 @@
+<form class="m-5 w-50" [formGroup]="formAdd" (ngSubmit)="add()" action="">
+    <div class="form-group">
+      <label>Фамилия</label>
+      <input type="text" name="surname" class="form-control" formControlName="surname">
+    </div>
+    <div class="form-group">
+      <label >Имя</label>
+      <input type="text" name="name" class="form-control" formControlName="name">
+    </div>
+    <div class="form-group">
+        <label >Отчество</label>
+        <input type="text" name="middlename" class="form-control" formControlName="middlename">
+    </div>
+    <div class="form-group">
+        <label >Номер</label>
+        <input type="text" mask="(000) 000-0000" prefix="8" [showMaskTyped]="true" name="number" class="form-control" formControlName="number">
+    </div>
+    <div class="form-group" for="exampleFormControlInput1">
+        <label >Email</label>
+        <input type="email" name="email" id="exampleFormControlInput1" formControlName="email" class="form-control">
+    </div>
+    <div class="form-group">
+        <label >Дата рождения</label>
+        <input type="text" mask="00.00.0000." [showMaskTyped]="true" name="data" formControlName="data" class="form-control">
+    </div>
+
+    <button [disabled]="formAdd.invalid" type="submit" class="btn btn-secondary">Добавить</button>
+    <p *ngIf="formAdd.invalid"> Заполни все </p>
+</form>

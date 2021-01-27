@@ -95,36 +95,34 @@ connection.getConnection((err, connect) => {
       });
   })
 
-  // app.put('/students/:id', function (req, res) {
-  //   try {
-  //     connection.query('UPDATE `Students` SET `surname` = ?, `name` = ?, `middlename` = ?, `number` = ?, `email` = ?, `data` = ? WHERE id = ?',
-  //     [req.body.surname, req.body.name, req.body.middlename, req.body.number, req.body.email, req.body.data, req.params.id],        
-  //     function (err) {
-  //         if (err) {
-  //           res.status(500).send('Ошибка сервера')
-  //           console.log(err);
-  //         }
-  //         res.json("change");
-  //       });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // })
+  app.get('/students/:id', function (req, res) {
+    try {
+      connection.query(`SELECT * FROM Students WHERE id=${req.params.id} LIMIT 1`, function (error, results) {
+        if (error) {
+          res.status(500).send('Ошибка сервера')
+          console.log(error);
+        }
+        console.log(results);
+        res.json(results[0]);
+      });
+    } catch (error) { 
+      console.log(error);
+    }
+  
+  })
 
-  app.put("/api/students/:id", (req, res) => {
-    connection.query(`UPDATE Students SET surname=${req.body.surname}, name=${req.body.name},
-    middlename=${req.body.middlename}, number=${req.body.number},
-    email=${req.body.email}, data=${req.body.data} WHERE id=${req.params.id};`,
-    [req.body.surname, req.body.name, req.body.middlename, req.body.number, req.body.email, req.body.data, req.params.id],
+  app.put("/students/:id", (req, res) => {
+    connection.query(`UPDATE Students SET surname = ?, name = ?, middlename = ?, number = ?, email = ?, data = ? WHERE id=${req.params.id};`,
+    [req.body.surname, req.body.name, req.body.middlename, req.body.number, req.body.email, req.body.data],
     function (err) {
     if (err) {
-    res.status(500).send('Ошибка сервера при редактировании вопроса')
+    res.status(500).send(err)
     console.log(err);
     }
-    console.log('Добавление прошло успешно');
+    console.log('Редактирование прошло успешно');
     res.json("Update");
     });
-    })
+  })
 
   app.delete("/students/:id", (req, res) => {
     connection.query(`DELETE FROM Students WHERE id=${req.params.id}`,

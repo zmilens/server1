@@ -12,7 +12,6 @@ export class EditComponent implements OnInit {
   students: any = [{}];
   id: number;
   disabled: false;
-  // student: any ={id: null, surname: '', name: '', middlename: '', email: '', data: '', group: '', direction: ''};
   editForm: FormGroup;
   student;
 

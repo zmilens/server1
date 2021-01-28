@@ -35,8 +35,6 @@ export class EditComponent implements OnInit {
         number: new FormControl({value: this.student.number, disabled: this.disabled}, [Validators.required, Validators.pattern("^[A-Za-z0-9._-]{0,}@[A-Za-z]{0,}.[A-Za-z]{2,3}")]),
         email: new FormControl({value: this.student.email, disabled: this.disabled}),
         data: new FormControl({value: this.student.data, disabled: this.disabled}),
-        group: new FormControl({value: this.student.group, disabled: this.disabled}),
-        direction: new FormControl({value: this.student.direction, disabled: this.disabled}, [Validators.required, Validators.pattern("^[A-Za-zА-Яа-яЁё]{1,}")]),
         })
     })
   }

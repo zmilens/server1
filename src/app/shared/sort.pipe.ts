@@ -59,12 +59,12 @@ export class SortPipe implements PipeTransform {
         }
       }
     }
+
     if (!isNullOrUndefined(students) && !isNullOrUndefined(filter)){
       let filt = students.filter(
-        student => (student.group.toLowerCase().indexOf(filter.toLowerCase())==0 || student.direction.toLowerCase().indexOf(filter.toLowerCase())==0));
+        student => (student.name.toLowerCase().indexOf(filter.toLowerCase())==0 || student.surname.toLowerCase().indexOf(filter.toLowerCase())==0 || student.middlename.toLowerCase().indexOf(filter.toLowerCase())==0));
       return filt;
     }
     return students;
   }
-
 }

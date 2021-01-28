@@ -9,7 +9,6 @@ export class HttpService extends API {
   header = new HttpHeaders("Content-Type: application/json; charset=UTF-8");
   url= "students";
   url1="add";
-  url3="edit";
 
   constructor(public httpClient: HttpClient) {
     super(httpClient);

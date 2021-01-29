@@ -66,16 +66,16 @@ connection.getConnection((err, connect) => {
 
   app.get('/students', function (req, res) {
     try {
-      connection.query('SELECT * FROM `Students`', function (error, results) {
-        if (error) {
+      connection.query('SELECT * FROM `Students`', function (err, results) {
+        if (err) {
           res.status(500).send('Ошибка сервера')
-          console.log(error);
+          console.log(err);
         }
         console.log(results);
         res.json(results);
       });
-    } catch (error) { 
-      console.log(error);
+    } catch (err) { 
+      console.log(err);
     }
   
   });
@@ -108,7 +108,6 @@ connection.getConnection((err, connect) => {
     } catch (error) { 
       console.log(error);
     }
-  
   })
 
   app.put("/students/:id", (req, res) => {
